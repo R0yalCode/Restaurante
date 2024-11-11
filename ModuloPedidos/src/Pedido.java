@@ -5,6 +5,7 @@ public class Pedido {
     //Atributos:
     private static int codigo=1;
     private LocalDate fechaActual;
+    private String informacion;
     private int numero;
     //Asociacion:
     private Cliente cliente;
@@ -22,6 +23,9 @@ public class Pedido {
     //Getter:
     public Estado getEstado() {
         return estado;
+    }
+    public String getInformacion() {
+        return informacion;
     }
     public int getNumero() {
         return numero;
@@ -43,17 +47,23 @@ public class Pedido {
         }
         return total;
     }
-    public String registrarInformacion(){
-        return "| Nombre: "+cliente.getNombre()+" | Fecha: "+fechaActual+" | Pedido: "+numero+
-                " | Nro.Personas: "+cliente.getCantidadPersonas()+" | Para Llevar: "+cliente.isEsParaLlevar()+
-                " | Mesa: "+cliente.getMesa()+" | Total: "+cliente.valorPedido()+" |";
+    public void registrarInformacion(int numeroMesa) {
+        if(numeroMesa==0){
+            this.informacion = "| Nombre: " + cliente.getNombre() + " | Fecha: " + fechaActual + " | Pedido: " + numero +
+                    " | Nro.Personas: " + cliente.getCantidadPersonas() + " | Para Llevar: " + cliente.isEsParaLlevar() +
+                    " | Mesa: Null | Total: " + cliente.valorPedido() + " |";
+        } else {
+            this.informacion = "| Nombre: " + cliente.getNombre() + " | Fecha: " + fechaActual + " | Pedido: " + numero +
+                    " | Nro.Personas: " + cliente.getCantidadPersonas() + " | Para Llevar: " + cliente.isEsParaLlevar() +
+                    " | Mesa: " + numeroMesa + " | Total: " + cliente.valorPedido() + " |";
+        }
     }
     public void removerPlato(Plato plato){
         if(platos.contains(plato)){
             platos.remove(plato);
         }
     }
-    public void tiempoEspera(int tiempo, Plato plato){
+    public void mostrarTiempoEspera(int tiempo, Plato plato){
         System.out.println("El plato de ("+plato.getNombre()+") estara en "+tiempo+" minutos");
     }
 
