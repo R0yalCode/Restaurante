@@ -14,9 +14,9 @@ Este módulo tiene la responsabilidad de gestionar los pedidos realizados por lo
 ### Diagrama UML
 Se adjunta el diagrama UML actualizado, que refleja los cambios realizados al modelo original durante la implementación.
 
-![Diagrama UML del restaurante](https://github.com/user-attachments/assets/3b7e4fcb-13b6-4e78-b39b-a95e53790c1f)
 
-
+![Diagrama UML del restaurante](https://github.com/user-attachments/assets/5cdc074f-d407-4b31-95e8-9c37c3249dc1)
+> Diagrama de clases-UML del modulo de pedidos 
 
 ## Implementación de POO
 ### Abstracción y Encapsulación
