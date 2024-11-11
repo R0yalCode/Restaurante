@@ -1,7 +1,3 @@
-# Carpeta java
-[Acceso directo a la carpeta](https://github.com/R0yalCode/Restaurante/tree/a6d85250b1c589a0bd2dae2213f0916b135458f4/ModuloPedidos/src)
-
-
 # Sistema de Gestión de Pedidos de Restaurante
 Este proyecto tiene como objetivo implementar el módulo de Pedidos dentro de un sistema de gestión para un restaurante. El sistema está basado en un diagrama UML diseñado en la Unidad 1, que incluye los conceptos fundamentales de la programación orientada a objetos (POO), tales como la abstracción, encapsulación, herencia y polimorfismo.
 
@@ -17,6 +13,11 @@ Se adjunta el diagrama UML actualizado, que refleja los cambios realizados al mo
 
 ![Diagrama UML del restaurante](https://github.com/user-attachments/assets/5cdc074f-d407-4b31-95e8-9c37c3249dc1)
 > Diagrama de clases-UML del modulo de pedidos 
+
+# Carpeta java
+[Carpeta.java](https://github.com/R0yalCode/Restaurante/blob/release/Correci%C3%B3n/ModuloPedidos2U.vpp)
+
+Esta carpeta te redirecciona a donde se encuentran los archivos.java necesarios para ejecutar el proyecto localmente.
 
 ## Implementación de POO
 ### Abstracción y Encapsulación
