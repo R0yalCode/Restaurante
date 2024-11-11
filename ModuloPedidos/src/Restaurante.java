@@ -1,17 +1,19 @@
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Scanner;
 public class Restaurante {
     //Asociacion:
-    private List <Mesa> mesas;
-    private Menu menu;
     private List <Cliente> clientes;
-    private List <Plato> platos;
+    private Menu menu;
+    private List <Mesa> mesas;
+    private List <Mesero> meseros;
+    private List <PersonalCocina> personalCocinaList;
     //Constructor:
     public Restaurante() {
-        this.mesas = new ArrayList<>();
-        this.menu = new Menu();
         this.clientes = new ArrayList<>();
+        this.menu = new Menu();
+        this.mesas = new ArrayList<>();
+        this.meseros = new ArrayList<>();
+        this.personalCocinaList = new ArrayList<>();
     }
     //Getter:
     public Menu getMenu() {
@@ -23,9 +25,12 @@ public class Restaurante {
             mesas.add(new Mesa(capacidad));
         }
     }
-    public boolean asignarMesa(Cliente cliente, int cantidadPersonas){
+    public void agregarPersonalCocina(String nombre,String cedula, String telefono){
+        personalCocinaList.add(new PersonalCocina(nombre,cedula,telefono));
+    }
+    private boolean asignarMesa(Cliente cliente, int cantidadPersona){
         for (Mesa mesa : mesas){
-            if(mesa.isDisponible()&&(mesa.getCapacidad()==cantidadPersonas||mesa.getCapacidad()==(cantidadPersonas+1))){
+            if(mesa.isDisponible()&&(mesa.getCapacidad()==cantidadPersona||mesa.getCapacidad()==(cantidadPersona+1))){
                 mesa.reservar(mesa);
                 cliente.asignarMesa(mesa);
                 return true;
@@ -65,28 +70,29 @@ public class Restaurante {
         }
         return false;
     }
-    public void gestionarPedido(Cliente cliente,int cantidadPersonas, boolean esParaLlevar, Plato plato){
+    private void gestionarPedido(Cliente cliente,int cantidadPersona, boolean esParaLlevar, Plato plato, Pedido pedido){
         if(clientes.contains(cliente)){
-            cliente.realizarPedido(plato,cantidadPersonas,esParaLlevar);
+            cliente.realizarPedido(plato,cantidadPersona,esParaLlevar,pedido);
             System.out.println("-> El plato ("+plato.getNombre()+") fue asignado al pedido del cliente "+cliente.getNombre());
 
         } else{
-            System.out.println("! Cliente no registrado 1 !");
+            System.out.println("! Cliente no registrado !");
         }
 
     }
-    public void mostrarMenu(){
+    private void mostrarMenu(){
         menu.mostrarPlatos();
     }
-    public void escogerPlatos(Cliente cliente,int cantidadPersonas, boolean esParaLlevar, String... platosEscogidos) {
+    public void escogerPlatos(Cliente cliente,int cantidadPersona, boolean esParaLlevar, String... platosEscogidos) {
         if (!clientes.contains(cliente)) {
             clientes.add(cliente);
         }
         mostrarMenu();
         List<Plato> platoList = new ArrayList<>();
         if (!esParaLlevar && cliente.getMesa()==null) {
-            asignarMesa(cliente, cantidadPersonas);
+            asignarMesa(cliente, cantidadPersona);
         }
+        Pedido pedido = new Pedido(cliente);
         for (String platoEscogido : platosEscogidos) {
             boolean m = false;
             for (Plato plato : menu.getPlatos()) {
@@ -102,15 +108,58 @@ public class Restaurante {
 
         }
         for (Plato plato : platoList) {
-            gestionarPedido(cliente, cantidadPersonas, esParaLlevar, plato);
+            gestionarPedido(cliente, cantidadPersona, esParaLlevar, plato, pedido);
         }
-
     }
-    public void mostrarCuenta(Cliente cliente){
-        if(cliente.getMesa()!=null||cliente.isEsParaLlevar()){
-            cliente.realizarPago(cliente.valorPedido());
-        } else{
-            System.out.println("El cliente no ha realizado el pedido aun");
+    private void mostrarCuenta(Cliente cliente){
+        System.out.println("Total a pagar: $"+cliente.valorPedido());
+        cliente.realizarPago(cliente.valorPedido());
+    }
+    public void gestionarEntregaPedido(Mesero mesero,Cliente... clientes){
+        if(!meseros.contains(mesero)){
+            meseros.add(mesero);
+        }
+        for (Cliente cliente : clientes){
+            if(cliente.getMesa()!=null||cliente.isEsParaLlevar()) {
+                if (mesero.visualizarEstado(cliente) == Estado.PENDIENTE) {
+                    gestionarPedidoPendiente(cliente);
+                }
+                if (mesero.visualizarEstado(cliente) == Estado.EN_PREPRACION) {
+                    gestionarPedidoPreparacion(cliente);
+                }
+                if (mesero.visualizarEstado(cliente) == Estado.PREPARADO) {
+                    mesero.entregarPedido(cliente);
+                }
+                if (mesero.visualizarEstado(cliente) == Estado.SERVIDO) {
+                    mostrarCuenta(cliente);
+                    mesero.actualizarEstado(Estado.PAGADO, cliente);
+                }
+                if (mesero.visualizarEstado(cliente) == Estado.PAGADO) {
+                    System.out.println("El pedido ya esta pagado");
+                }
+            } else{
+                System.out.println("El cliente "+cliente.getNombre()+" no ha realizado el pedido aun");
+            }
+        }
+    }
+    private void gestionarPedidoPendiente(Cliente cliente){
+        for (PersonalCocina personalCocina : personalCocinaList){
+            if(!personalCocina.isEstaCocinando()){
+                personalCocina.prepararPedido(cliente);
+                return;
+            }
+        }
+    }
+    private void gestionarPedidoPreparacion(Cliente cliente){
+        System.out.println("El pedido "+cliente.getPedido().getNumero()+" ya esta en preparacion");
+        for (PersonalCocina personalCocina : personalCocinaList){
+            if(personalCocina.isEstaCocinando()) {
+                if (personalCocina.getCliente() == cliente) {
+                    personalCocina.servirPedido(cliente);
+                    personalCocina.setEstaCocinando(false);
+                }
+
+            }
         }
     }
 }

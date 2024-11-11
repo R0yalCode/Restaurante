@@ -1,4 +1,5 @@
 public class Plato {
+    //Atributos:
     private String nombre;
     private float precio;
     //Constructor:
