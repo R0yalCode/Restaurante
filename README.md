@@ -1,4 +1,4 @@
-![Captura de pantalla 2024-11-10 235538](https://github.com/user-attachments/assets/96046a92-cbbf-4a78-81b4-4966aeedc0d6)
+
 
 # Sistema de Gestión de Pedidos de Restaurante
 Este proyecto tiene como objetivo implementar el módulo de Pedidos dentro de un sistema de gestión para un restaurante. El sistema está basado en un diagrama UML diseñado en la Unidad 1, que incluye los conceptos fundamentales de la programación orientada a objetos (POO), tales como la abstracción, encapsulación, herencia y polimorfismo.
@@ -11,6 +11,8 @@ Este módulo tiene la responsabilidad de gestionar los pedidos realizados por lo
 
 ### Diagrama UML
 Se adjunta el diagrama UML actualizado, que refleja los cambios realizados al modelo original durante la implementación.
+
+![Diagrama UML](https://github.com/user-attachments/assets/96046a92-cbbf-4a78-81b4-4966aeedc0d6)
 
 
 ## Implementación de POO
