@@ -12,7 +12,8 @@ Este módulo tiene la responsabilidad de gestionar los pedidos realizados por lo
 ### Diagrama UML
 Se adjunta el diagrama UML actualizado, que refleja los cambios realizados al modelo original durante la implementación.
 
-![Diagrama UML](https://github.com/user-attachments/assets/96046a92-cbbf-4a78-81b4-4966aeedc0d6)
+![Diagrama UML del restaurante](https://github.com/user-attachments/assets/b2a35919-0453-48fe-bdbd-c0cd5135a47e)
+
 
 
 ## Implementación de POO
