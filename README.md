@@ -1,5 +1,5 @@
 # Carpeta java
-![Acceso directo a la carpeta](https://github.com/R0yalCode/Restaurante/tree/a6d85250b1c589a0bd2dae2213f0916b135458f4/ModuloPedidos/src)
+[Acceso directo a la carpeta](https://github.com/R0yalCode/Restaurante/tree/a6d85250b1c589a0bd2dae2213f0916b135458f4/ModuloPedidos/src)
 
 
 # Sistema de Gestión de Pedidos de Restaurante
