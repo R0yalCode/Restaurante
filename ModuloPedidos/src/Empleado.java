@@ -1,24 +1,20 @@
-public class Empleado extends Persona{
+public abstract class Empleado extends Persona{
+    protected static int contador;
     protected String identificacion;
-    private static int contador;
-    //Asociacion:
-    private Pedido pedido;
     //Constructor:
     public Empleado(String nombre, String cedula, String telefono) {
         super(nombre, cedula, telefono);
         this.identificacion="24"+contador++;
     }
-    //Metodo:
-    public void visualizarEstado(Cliente... clientes){
-        for(Cliente cliente : clientes){
-            System.out.println("-> El pedido "+cliente.getPedido().getNumero()+" se encuentra "+cliente.getPedido().getEstado());
-        }
+    //Getter:
+    public String getIdentificacion() {
+        return identificacion;
     }
-    public void actualizarEstado(Estado estado, Cliente... clientes){
-        for(Cliente cliente : clientes){
-            cliente.getPedido().setEstado(estado);
-            System.out.println("El pedido "+cliente.getPedido().getNumero()+" ahora esta "+cliente.getPedido().getEstado());
-        }
-
+    //Metodo:
+    public void actualizarEstado(Estado estado, Cliente cliente){
+        cliente.getPedido().setEstado(estado);
+    }
+    public Estado visualizarEstado(Cliente cliente){
+        return cliente.getPedido().getEstado();
     }
 }

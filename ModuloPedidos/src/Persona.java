@@ -1,12 +1,12 @@
 public abstract class Persona {
     //Atributos:
-    private String nombre;
-    private String cedula;
-    private String telefono;
+    protected String cedula;
+    protected String nombre;
+    protected String telefono;
     //Constructor:
     public Persona(String nombre, String cedula, String telefono) {
-        this.nombre = nombre;
         this.cedula = cedula;
+        this.nombre = nombre;
         this.telefono = telefono;
     }
     //Getter:
