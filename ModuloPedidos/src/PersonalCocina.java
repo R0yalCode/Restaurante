@@ -27,13 +27,13 @@ public class PersonalCocina extends Empleado{
         for (Plato plato : cliente.getPedido().getPlatos()) {
             if (plato.getNombre().equalsIgnoreCase("Pizza")) {
                 tiempoEspera = 5;
-                cliente.getPedido().tiempoEspera(tiempoEspera,plato);
+                cliente.getPedido().mostrarTiempoEspera(tiempoEspera,plato);
             } else if (plato.getNombre().equalsIgnoreCase("Ensalada")) {
                 tiempoEspera = 7;
-                cliente.getPedido().tiempoEspera(tiempoEspera,plato);
+                cliente.getPedido().mostrarTiempoEspera(tiempoEspera,plato);
             } else {
                 tiempoEspera = 10;
-                cliente.getPedido().tiempoEspera(tiempoEspera,plato);
+                cliente.getPedido().mostrarTiempoEspera(tiempoEspera,plato);
             }
         }
     }

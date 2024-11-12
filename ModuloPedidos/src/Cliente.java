@@ -36,7 +36,11 @@ public class Cliente extends Persona{
     }
     public void realizarPago(float total) {
         System.out.println("[ "+getNombre()+" realizo el pago de $"+total+" ]");
-        historial.agregarPedido(pedido);
+        if(mesa!=null) {
+            historial.agregarPedido(pedido, mesa.getNumero());
+        } else{
+            historial.agregarPedido(pedido, 0);
+        }
         if(!isEsParaLlevar()){
             mesa.desocupar(mesa);
             System.out.println(getNombre()+" ha desocupado la mesa "+mesa.getNumero());
