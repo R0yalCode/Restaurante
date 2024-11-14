@@ -11,7 +11,7 @@ Este módulo tiene la responsabilidad de gestionar los pedidos realizados por lo
 Se adjunta el diagrama UML actualizado, que refleja los cambios realizados al modelo original durante la implementación.
 
 
-![Diagrama UML del restaurante](https://github.com/user-attachments/assets/5cdc074f-d407-4b31-95e8-9c37c3249dc1)
+![Captura de pantalla 2024-11-14 155727](https://github.com/user-attachments/assets/60831386-5441-4c27-a9ab-d474bc47e511)
 > Diagrama de clases-UML del modulo de pedidos 
 
 # Carpeta java
