@@ -1,8 +1,6 @@
 public class PersonalCocina extends Empleado{
     //Atributos:
     private boolean estaCocinando;
-    //Asociacion:
-    private Cliente cliente;
     //Constructor:
     public PersonalCocina(String nombre, String cedula, String telefono) {
         super(nombre, cedula, telefono);
@@ -12,34 +10,31 @@ public class PersonalCocina extends Empleado{
     public boolean isEstaCocinando() {
         return estaCocinando;
     }
-    public Cliente getCliente() {
-        return cliente;
-    }
     public void setEstaCocinando(boolean estaCocinando) {
         this.estaCocinando = estaCocinando;
     }
     //Metodos:
-    public void prepararPedido(Cliente cliente){
-        this.cliente = cliente;
+    public void prepararPedido(Pedido pedido){
         setEstaCocinando(true);
         int tiempoEspera=0;
-        actualizarEstado(Estado.EN_PREPRACION,cliente);
-        for (Plato plato : cliente.getPedido().getPlatos()) {
-            if (plato.getNombre().equalsIgnoreCase("Pizza")) {
+        actualizarEstado(Estado.EN_PREPRACION,pedido);
+        pedidos.add(pedido);
+        for (ItemPedido itemPedido : pedido.getItemPedidoList()) {
+            if (itemPedido.getPlato().getNombre().equalsIgnoreCase("Pizza")) {
                 tiempoEspera = 5;
-                cliente.getPedido().mostrarTiempoEspera(tiempoEspera,plato);
-            } else if (plato.getNombre().equalsIgnoreCase("Ensalada")) {
+                pedido.mostrarTiempoEspera(tiempoEspera,itemPedido);
+            } else if (itemPedido.getPlato().getNombre().equalsIgnoreCase("Ensalada")) {
                 tiempoEspera = 7;
-                cliente.getPedido().mostrarTiempoEspera(tiempoEspera,plato);
+                pedido.mostrarTiempoEspera(tiempoEspera,itemPedido);
             } else {
                 tiempoEspera = 10;
-                cliente.getPedido().mostrarTiempoEspera(tiempoEspera,plato);
+                pedido.mostrarTiempoEspera(tiempoEspera,itemPedido);
             }
         }
     }
-    public void servirPedido(Cliente cliente) {
-        actualizarEstado(Estado.PREPARADO, cliente);
-        System.out.println("El pedido " + cliente.getPedido().getNumero() + " ya esta listo para entregar");
+    public void servirPedido(Pedido pedido) {
+        actualizarEstado(Estado.PREPARADO, pedido);
+        System.out.println("El pedido "+pedido.getNumero()+" ya esta listo para entregar");
 
     }
 }

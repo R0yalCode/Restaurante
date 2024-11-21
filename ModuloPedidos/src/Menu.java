@@ -21,10 +21,10 @@ public class Menu {
             System.out.println("| Plato: "+plato.getNombre()+" | Precio: $"+plato.getPrecio()+" |");
         }
     }
-    public void removerPlato(String nombre){
+    public void removerPlato(Plato platoRemover){
         for (Plato plato : platos) {
-            if (platos.contains(plato)) {
-                platos.remove(plato);
+            if (platos.contains(platoRemover)) {
+                platos.remove(platoRemover);
             }
         }
     }

@@ -9,62 +9,68 @@ public class Pedido {
     private int numero;
     //Asociacion:
     private Cliente cliente;
-    private List <Plato> platos;
+    private List <ItemPedido> itemPedidoList;
+    private Mesa mesa;
     //Enumerador:
     private Estado estado;
     //Constructor:
     public Pedido(Cliente cliente) {
         this.cliente = cliente;
-        this.fechaActual = LocalDate.now();
         this.estado = Estado.PENDIENTE;
-        this.platos = new ArrayList<>();
+        this.fechaActual = LocalDate.now();
+        this.itemPedidoList = new ArrayList<>();
         this.numero = codigo++;
     }
     //Getter:
+    public Cliente getCliente() {
+        return cliente;
+    }
     public Estado getEstado() {
         return estado;
     }
     public String getInformacion() {
         return informacion;
     }
+    public List<ItemPedido> getItemPedidoList() {
+        return itemPedidoList;
+    }
     public int getNumero() {
         return numero;
-    }
-    public List<Plato> getPlatos() {
-        return platos;
     }
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+    public void setItemPedidoList(List<ItemPedido> itemPedidoList) {
+        this.itemPedidoList = itemPedidoList;
+    }
     //Metodos:
-    public void agregarPlato(Plato plato){
-        platos.add(plato);
+    public void agregarItem(ItemPedido itemPedido){
+        itemPedidoList.add(itemPedido);
     }
     public float calcularTotal(){
         float total=0;
-        for(Plato plato: platos){
-            total+=plato.getPrecio();
+        for (ItemPedido itempedido : itemPedidoList){
+            total+=itempedido.getCantidad()*itempedido.getPlato().getPrecio();
         }
         return total;
+    }
+    public void mostrarTiempoEspera(int tiempo, ItemPedido itemPedido){
+        System.out.println("El plato de ("+itemPedido.getPlato().getNombre()+") estara en "+tiempo+" minutos");
     }
     public void registrarInformacion(int numeroMesa) {
         if(numeroMesa==0){
             this.informacion = "| Nombre: " + cliente.getNombre() + " | Fecha: " + fechaActual + " | Pedido: " + numero +
                     " | Nro.Personas: " + cliente.getCantidadPersonas() + " | Para Llevar: " + cliente.isEsParaLlevar() +
-                    " | Mesa: Null | Total: " + cliente.valorPedido() + " |";
+                    " | Mesa: Null | Total: " + calcularTotal() + " |";
         } else {
             this.informacion = "| Nombre: " + cliente.getNombre() + " | Fecha: " + fechaActual + " | Pedido: " + numero +
                     " | Nro.Personas: " + cliente.getCantidadPersonas() + " | Para Llevar: " + cliente.isEsParaLlevar() +
-                    " | Mesa: " + numeroMesa + " | Total: " + cliente.valorPedido() + " |";
+                    " | Mesa: " + numeroMesa + " | Total: " + calcularTotal() + " |";
         }
     }
-    public void removerPlato(Plato plato){
-        if(platos.contains(plato)){
-            platos.remove(plato);
+    public void removerItem(ItemPedido itemPedido){
+        if(itemPedidoList.contains(itemPedido)){
+            itemPedidoList.remove(itemPedido);
         }
     }
-    public void mostrarTiempoEspera(int tiempo, Plato plato){
-        System.out.println("El plato de ("+plato.getNombre()+") estara en "+tiempo+" minutos");
-    }
-
 }
