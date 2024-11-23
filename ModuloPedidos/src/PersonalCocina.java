@@ -34,7 +34,7 @@ public class PersonalCocina extends Empleado{
     }
     public void servirPedido(Pedido pedido) {
         actualizarEstado(Estado.PREPARADO, pedido);
-        System.out.println("El pedido "+pedido.getNumero()+" ya esta listo para entregar");
+        System.out.println("-> El pedido "+pedido.getNumero()+" ya esta listo para entregar");
 
     }
 }

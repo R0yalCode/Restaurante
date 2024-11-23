@@ -16,10 +16,11 @@ public class Menu {
         platos.add(new Plato(nombre,precio));
     }
     public void mostrarPlatos(){
-        System.out.println("----Platos disponibles----");
+        System.out.println("|-------- Platos disponibles --------|");
         for (Plato plato : platos) {
-            System.out.println("| Plato: "+plato.getNombre()+" | Precio: $"+plato.getPrecio()+" |");
+            System.out.println("[ Plato: "+plato.getNombre()+" | Precio: $"+plato.getPrecio()+" ]");
         }
+        System.out.println("|____________________________________|");
     }
     public void removerPlato(Plato platoRemover){
         for (Plato plato : platos) {
