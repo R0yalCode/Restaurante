@@ -11,13 +11,14 @@ public class Historial {
     public void agregarPedido(Pedido pedido, int numeroMesa) {
         pedidos.add(pedido);
         pedido.registrarInformacion(numeroMesa);
-        System.out.println("Pedido " + pedido.getNumero() + " agregado al historial del cliente.");
+        System.out.println("--> Pedido " + pedido.getNumero() + " agregado al historial del cliente.");
     }
-    public void mostrarHistorial() {
+    public void mostrarInformacion() {
         if (pedidos.isEmpty()) {
-            System.out.println("El cliente no tiene pedidos en su historial.");
+            System.out.println("! El cliente no tiene pedidos en su historial! ");
         } else {
-            System.out.println("---- Historial de pedidos ----");
+            System.out.println("---------------------------------------------- Historial de pedidos " +
+                    "----------------------------------------------");
             for (Pedido pedido : pedidos) {
                 System.out.println(pedido.getInformacion());
             }

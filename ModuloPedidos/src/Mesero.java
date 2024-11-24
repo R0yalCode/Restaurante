@@ -17,6 +17,6 @@ public class Mesero extends Empleado{
     //Metodos:
     public void entregarPedido(Pedido pedido){
         actualizarEstado(Estado.SERVIDO,pedido);
-        System.out.println("El pedido "+pedido.getNumero()+" fue entregado al cliente "+pedido.getCliente().getNombre());
+        System.out.println("--> El pedido "+pedido.getNumero()+" fue entregado al cliente "+pedido.getCliente().getNombre());
     }
 }

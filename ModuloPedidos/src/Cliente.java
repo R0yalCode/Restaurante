@@ -4,6 +4,7 @@ public class Cliente extends Persona{
     //Atributos:
     private int cantidadPersona;
     private boolean esParaLlevar;
+    private boolean realizoPedido;
     //Asociacion:
     private Historial historial;
     private List <ItemPedido> itemPedidoList;
@@ -13,6 +14,7 @@ public class Cliente extends Persona{
         super(nombre, cedula, telefono);
         this.historial = new Historial();
         this.itemPedidoList = new ArrayList<>();
+        System.out.println("< Se añadio al cliente "+nombre+" >");
     }
     //Getter:
     public int getCantidadPersonas() {
@@ -26,6 +28,9 @@ public class Cliente extends Persona{
     }
     public Mesa getMesa() {
         return mesa;
+    }
+    public boolean isRealizoPedido() {
+        return realizoPedido;
     }
     public boolean isEsParaLlevar() {
         return esParaLlevar;
@@ -53,7 +58,7 @@ public class Cliente extends Persona{
         }
     }
     public void realizarPago(float total,Pedido pedido) {
-        System.out.println("[ "+getNombre()+" realizo el pago de $"+total+" ]");
+        System.out.println("--> "+getNombre()+" realizo el pago de $"+total);
         if(mesa!=null) {
             historial.agregarPedido(pedido, mesa.getNumero());
         } else{
@@ -61,22 +66,25 @@ public class Cliente extends Persona{
         }
         if(!isEsParaLlevar()){
             mesa.desocupar(mesa);
-            System.out.println(getNombre()+" ha desocupado la mesa "+mesa.getNumero());
+            System.out.println("--> "+getNombre()+" ha desocupado la mesa "+mesa.getNumero());
             setMesa(mesa=null);
         }
         itemPedidoList.clear();
     }
     public void realizarPedido(boolean esParaLlevar, Plato plato, int cantidad, String observacion){
         this.esParaLlevar = esParaLlevar;
-        boolean m = false;
+        this.realizoPedido = false;
         itemPedidoList.add(new ItemPedido(this,plato,cantidad,observacion));
         if(observacion.equalsIgnoreCase("Ninguna")) {
-            System.out.println(getNombre() + " pidio [" + cantidad + "] (" + plato.getNombre() + ")");
+            System.out.println("-> "+getNombre()+" pidio ["+cantidad+"] ("+plato.getNombre()+")");
+            this.realizoPedido = true;
         } else{
-            System.out.println(getNombre() + " pidio [" + cantidad + "] (" + plato.getNombre() + ") {"+observacion+"}");
+            System.out.println("-> "+getNombre()+" pidio ["+cantidad+"] ("+plato.getNombre()+") {"+observacion+"}");
+            this.realizoPedido = true;
         }
     }
     public void visualizarMesaAsignada(){
-        System.out.println("El cliente ("+getNombre()+") ocupa la mesa "+mesa.getNumero());
+        System.out.println("---> A "+getNombre()+" se le asigno la mesa (Numero: "+mesa.getNumero()+
+                " | Cantidad: "+mesa.getCapacidad()+" personas) ");
     }
 }

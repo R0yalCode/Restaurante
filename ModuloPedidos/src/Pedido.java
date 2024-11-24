@@ -20,6 +20,7 @@ public class Pedido {
         this.fechaActual = LocalDate.now();
         this.itemPedidoList = new ArrayList<>();
         this.numero = codigo++;
+        System.out.println("{ Se creo el pedido "+getNumero()+" }");
     }
     //Getter:
     public Cliente getCliente() {
@@ -27,6 +28,9 @@ public class Pedido {
     }
     public Estado getEstado() {
         return estado;
+    }
+    public LocalDate getFechaActual() {
+        return fechaActual;
     }
     public String getInformacion() {
         return informacion;
@@ -55,13 +59,12 @@ public class Pedido {
         return total;
     }
     public void mostrarTiempoEspera(int tiempo, ItemPedido itemPedido){
-        System.out.println("El plato de ("+itemPedido.getPlato().getNombre()+") estara en "+tiempo+" minutos");
+        System.out.println("-> El plato de ("+itemPedido.getPlato().getNombre()+") estara en "+tiempo+" minutos");
     }
     public void registrarInformacion(int numeroMesa) {
         if(numeroMesa==0){
             this.informacion = "| Nombre: " + cliente.getNombre() + " | Fecha: " + fechaActual + " | Pedido: " + numero +
-                    " | Nro.Personas: " + cliente.getCantidadPersonas() + " | Para Llevar: " + cliente.isEsParaLlevar() +
-                    " | Mesa: Null | Total: " + calcularTotal() + " |";
+                    " | Para Llevar: " + cliente.isEsParaLlevar() + " | Total: " + calcularTotal() + " |";
         } else {
             this.informacion = "| Nombre: " + cliente.getNombre() + " | Fecha: " + fechaActual + " | Pedido: " + numero +
                     " | Nro.Personas: " + cliente.getCantidadPersonas() + " | Para Llevar: " + cliente.isEsParaLlevar() +
