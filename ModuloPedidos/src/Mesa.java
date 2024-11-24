@@ -11,14 +11,14 @@ public class Mesa {
         this.numero = contador++;
     }
     //Getter:
-    public boolean isDisponible() {
-        return disponible;
-    }
     public int getCapacidad() {
         return capacidad;
     }
     public int getNumero() {
         return numero;
+    }
+    public boolean isDisponible() {
+        return disponible;
     }
     //Metodos:
     public void desocupar(Mesa mesa){

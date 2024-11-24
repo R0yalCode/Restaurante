@@ -1,20 +1,28 @@
-public abstract class Empleado extends Persona{
+import java.util.List;
+import java.util.ArrayList;
+public abstract class Empleado extends Persona implements InteraccionPedido{
     protected static int contador;
     protected String identificacion;
+    //Asociacion:
+    protected List <Pedido> pedidos = new ArrayList<>();;
     //Constructor:
     public Empleado(String nombre, String cedula, String telefono) {
         super(nombre, cedula, telefono);
-        this.identificacion="24"+contador++;
     }
     //Getter:
     public String getIdentificacion() {
         return identificacion;
     }
-    //Metodo:
-    public void actualizarEstado(Estado estado, Cliente cliente){
-        cliente.getPedido().setEstado(estado);
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
-    public Estado visualizarEstado(Cliente cliente){
-        return cliente.getPedido().getEstado();
+    //Metodo:
+    @Override
+    public void actualizarEstado(Estado estado, Pedido pedido) {
+        pedido.setEstado(estado);
+    }
+    @Override
+    public Estado visualizarEstado(Pedido pedido) {
+        return pedido.getEstado();
     }
 }

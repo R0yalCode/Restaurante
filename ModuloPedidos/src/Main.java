@@ -8,34 +8,67 @@ public class Main {
         restaurante.getMenu().agregarPlato("Ensalada",4);
         restaurante.getMenu().agregarPlato("Hamburguesa",3.25f);
         //Empleados:
-        Mesero mesero = new Mesero("Luis","1106584580","0945859279");
+        restaurante.agregarMesero("Luis","1106584580","0945859279");
         restaurante.agregarPersonalCocina("Carlos","1103958670","0965835789");
         //Clientes:
-        Cliente cliente = new Cliente("Juan","1102984670","0964837368");
-        Cliente cliente2 = new Cliente("Jose","1103594850","0938775289");
-        Cliente cliente3 = new Cliente("Ivan","1108475980","09785935478");
-        Cliente cliente4 = new Cliente("Jean", "1103854908","0947901289");
+        restaurante.agregarCliente("Juan","1102984670","0964837368");
+        restaurante.agregarCliente("Jose","1103594850","0938775289");
+        restaurante.agregarCliente("Ivan","1108475980","09785935478");
+        restaurante.agregarCliente("Jean", "1103854908","0947901289");
+        //Procesos:
         restaurante.mostrarMesasDisponibles();
-        restaurante.realizarReserva(cliente,2);
+        restaurante.realizarReserva("1102984670",2,1);
+        restaurante.anotarPedido("1102984670",false,"pizza",
+                2,"ninguna");
+        restaurante.anotarPedido("1102984670",false,"eNsalada",
+                1,"ninguna");
+        restaurante.anotarPedido("1102984670",false,"HamburGuesa",
+                1,"Sin mayonesas");
+        //--------------------------------------------------------------------------------------------
+        restaurante.asignarMesa("1103594850",4);
+        restaurante.anotarPedido("1103594850",false,"PiZza",
+                4,"Ninguna");
+        //--------------------------------------------------------------------------------------------
+        restaurante.anotarPedido("1108475980",true,"Pizza",
+                1,"Ninguna");
+        restaurante.anotarPedido("1108475980",true,"hamburguesa",
+                1,"Ninguna");
+        //-------------------------------------------------------------------------------------------
         restaurante.mostrarMesasDisponibles();
-        restaurante.escogerPlatos(cliente,2,false,"pizza","Pizza","Ensalada","HambuRguesa");
-        restaurante.escogerPlatos(cliente2,4,false,"Pizza","pizza","PiZza","Pizzza");
-        restaurante.escogerPlatos(cliente3,1,true,"pizza","hamburguesa");
+        restaurante.atenderPedido("1102984670","1103594850","1108475980");
+        restaurante.mostrarHistorial("1102984670");
         restaurante.mostrarMesasDisponibles();
-        restaurante.gestionarEntregaPedido(mesero,cliente,cliente2,cliente3,cliente4);
-        cliente.getHistorial().mostrarHistorial();
+        //-------------------------------------------------------------------------------------------
+        restaurante.asignarMesa("1103854908",5);
+        restaurante.anotarPedido("1103854908",false,"pizzA",
+                1,"Ninguna");
+        restaurante.anotarPedido("1103854908",false,"HAmburguesA",
+                1,"Ninguna");
+        restaurante.anotarPedido("1103854908",false,"ensAladA",
+                2,"Ninguna");
+        //--------------------------------------------------------------------------------------------
+        restaurante.asignarMesa("1103594850",3);
+        restaurante.anotarPedido("1103594850",false,"HamBurguesa",
+                2,"Ninguna");
+        restaurante.anotarPedido("1103594850",false,"PiZZa",
+                1,"Ninguna");
+        //------------------------------------------------------------------------------------------
         restaurante.mostrarMesasDisponibles();
-        restaurante.escogerPlatos(cliente,5,false,"pizza","HamBurguesa","ENSalada","ensalada");
-        System.out.println("mesa del cliente 1"+cliente.getMesa().getNumero());
+        restaurante.atenderPedido("1103854908","1103594850");
         restaurante.mostrarMesasDisponibles();
-        restaurante.gestionarEntregaPedido(mesero,cliente);
+        restaurante.mostrarHistorial("1103854908");
+        restaurante.mostrarHistorial("1103594850");
+        //----------------------------------------------------------------------------------------
+        restaurante.asignarMesa("1108475980",2);
         restaurante.mostrarMesasDisponibles();
-        cliente.getHistorial().mostrarHistorial();
-        cliente2.getHistorial().mostrarHistorial();
-        restaurante.escogerPlatos(cliente3,2,false,"PiZZA","Ensalada");
+        restaurante.anotarPedido("1108475980",false,"PiZZa",
+                1,"sin queso");
+        restaurante.anotarPedido("1108475980",false,"Ensalada",
+                1,"Ninguna");
+        //---------------------------------------------------------------------------------------
+        restaurante.atenderPedido("1108475980");
         restaurante.mostrarMesasDisponibles();
-        restaurante.gestionarEntregaPedido(mesero,cliente3);
-        restaurante.mostrarMesasDisponibles();
-        cliente3.getHistorial().mostrarHistorial();
+        restaurante.mostrarHistorial("1108475980");
+        restaurante.mostrarTotalPedidos();
     }
 }
