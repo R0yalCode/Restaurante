@@ -11,7 +11,7 @@ Este módulo tiene la responsabilidad de gestionar los pedidos realizados por lo
 Se adjunta el diagrama UML actualizado, que refleja los cambios realizados al modelo original durante la implementación.
 
 
-![Diagrama-UML del modulo de pedidos](https://github.com/user-attachments/assets/5e518221-8376-49b0-8b58-e87c95c2985b)
+![Diagrama_UML_Pedidos](https://github.com/user-attachments/assets/6b05f02c-bbea-43ee-afff-6912223fa713)
 > Diagrama de clases-UML del modulo de pedidos 
 
 # Carpeta java
